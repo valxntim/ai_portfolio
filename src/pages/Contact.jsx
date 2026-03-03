@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://165.227.222.180:8000/api'
+const API_URL = import.meta.env.VITE_API_URL || ''
 
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -18,7 +18,7 @@ export default function Contact() {
         setStatusMessage({ text: '', type: '' })
 
         try {
-            const response = await fetch(`${API_URL}/contact`, {
+            const response = await fetch(`${API_URL}/api/contact-proxy`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -150,8 +150,8 @@ export default function Contact() {
                     {/* Status Message */}
                     {statusMessage.text && (
                         <div className={`p-3 rounded-xl text-sm font-medium text-center ${statusMessage.type === 'success'
-                                ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
-                                : 'bg-red-500/10 border border-red-500/30 text-red-400'
+                            ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
+                            : 'bg-red-500/10 border border-red-500/30 text-red-400'
                             }`}>
                             {statusMessage.type === 'success' ? '✅' : '⚠️'} {statusMessage.text}
                         </div>

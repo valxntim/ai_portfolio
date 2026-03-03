@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useRef, useCallback } from 'react'
 
 const ChatContext = createContext(null)
 
-const API_URL = import.meta.env.VITE_API_URL || '/api'
+const API_URL = import.meta.env.VITE_API_URL || ''
 
 const MAX_INPUT_LENGTH = 500
 
@@ -63,7 +63,7 @@ export function ChatProvider({ children }) {
         setIsLoading(true)
 
         try {
-            const response = await fetch(`${API_URL}/ask`, {
+            const response = await fetch(`${API_URL}/api/proxy`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
