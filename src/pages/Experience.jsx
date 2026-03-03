@@ -8,13 +8,11 @@ const experiences = [
         period: 'Oct 2025 – Present',
         type: 'Private (NDA)',
         highlights: [
-            'Designed multi-agent architectures using LangGraph for medical hardware environments',
-            'Built Python APIs for model inference and structured data exchange with LLMs',
-            'Integrated medical devices through MCP protocol with validation layers and deterministic execution',
-            'Designed evaluation mechanisms to reduce hallucination in high-sensitivity systems',
-            'Production-oriented work prioritizing robustness, traceability, and architectural clarity',
+            'Built custom LLM agents using pure Python (no bloated frameworks) for medical hardware environments.',
+            'Developed the initial MVP in Streamlit and integrated devices securely via the MCP protocol.',
+            'Designed strict evaluation mechanisms to reduce hallucinations as the project scales to production.',
         ],
-        tags: ['Python', 'LangGraph', 'LLM Systems', 'API Design', 'Hardware Integration'],
+        tags: ['Python', 'LLM Systems', 'API Design', 'Hardware Integration', 'C++'],
         color: 'blue',
     },
     {
@@ -25,9 +23,6 @@ const experiences = [
         type: 'Academic Research',
         highlights: [
             'Developed automated web scraping for Instagram disinformation research',
-            'Preprocessed and stored unstructured social media data in MongoDB',
-            'Supported LLM-based semantic analysis for disinformation detection',
-            'Designed flexible data models for evolving research requirements',
         ],
         tags: ['Python', 'Web Scraping', 'MongoDB', 'LLM Analysis'],
         color: 'cyan',

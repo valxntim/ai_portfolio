@@ -17,7 +17,7 @@ export default function HeroChat() {
     const showSuggestions = messages.length <= 1 && !isLoading
 
     return (
-        <div className="relative group/chat h-full">
+        <div className="relative group/chat h-[600px] max-h-[600px]">
             {/* Glow border */}
             <div className="absolute -inset-px bg-gradient-to-b from-blue-500/20 via-cyan-500/10 to-transparent rounded-2xl opacity-60 group-hover/chat:opacity-100 transition-opacity duration-500" />
 

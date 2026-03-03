@@ -63,14 +63,14 @@ export default function Home() {
                     </div>
 
                     {/* Right Column — AI Chat (The Star) */}
-                    <div className="flex-1 lg:flex-[1.3] min-h-[500px] lg:min-h-0">
-                        <div className="h-full flex flex-col">
+                    <div className="flex-1 lg:flex-[1.3]">
+                        <div className="flex flex-col">
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
                                 <span className="text-[10px] font-mono text-blue-400/60 tracking-widest uppercase px-2">Live AI — Ask me anything</span>
                                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
                             </div>
-                            <div className="flex-1">
+                            <div>
                                 <HeroChat />
                             </div>
                         </div>
