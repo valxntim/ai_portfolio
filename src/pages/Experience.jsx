@@ -8,7 +8,7 @@ const experiences = [
         period: 'Oct 2025 – Present',
         type: 'Private (NDA)',
         highlights: [
-            'Built custom LLM agents using pure Python (no bloated frameworks) for medical hardware environments.',
+            'Built custom LLM agents using Python for medical hardware environments.',
             'Developed the initial MVP in Streamlit and integrated devices securely via the MCP protocol.',
             'Designed strict evaluation mechanisms to reduce hallucinations as the project scales to production.',
         ],

@@ -58,29 +58,6 @@ export default function Contact() {
                 I'm actively seeking roles in applied AI engineering, backend systems, and intelligent data infrastructure.
             </p>
 
-            {/* Social Links */}
-            <div className="space-y-4 max-w-sm mx-auto mb-16">
-                <a href="https://www.linkedin.com/in/gustavo-valentiim/" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:border-blue-500 hover:bg-slate-800/70 text-slate-300 hover:text-white transition-all group">
-                    <span className="text-xl">💼</span>
-                    <span className="font-semibold">LinkedIn</span>
-                    <span className="text-slate-600 group-hover:text-blue-400 ml-auto transition-colors">↗</span>
-                </a>
-                <a href="https://github.com/valxntim" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:border-emerald-500 hover:bg-slate-800/70 text-slate-300 hover:text-white transition-all group">
-                    <span className="text-xl">💻</span>
-                    <span className="font-semibold">GitHub</span>
-                    <span className="text-slate-600 group-hover:text-emerald-400 ml-auto transition-colors">↗</span>
-                </a>
-            </div>
-
-            {/* Divider */}
-            <div className="flex items-center gap-4 max-w-sm mx-auto mb-12">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-                <span className="text-xs font-mono text-slate-600 uppercase tracking-widest">or send a message</span>
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-            </div>
-
             {/* Contact Form */}
             <div className="relative max-w-md mx-auto">
                 {/* Glow effect */}
@@ -178,6 +155,29 @@ export default function Contact() {
                         )}
                     </button>
                 </form>
+            </div>
+
+            {/* Divider */}
+            <div className="flex items-center gap-4 max-w-sm mx-auto mt-16 mb-12">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
+                <span className="text-xs font-mono text-slate-600 uppercase tracking-widest">or find me on</span>
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
+            </div>
+
+            {/* Social Links */}
+            <div className="space-y-4 max-w-sm mx-auto mb-16">
+                <a href="https://www.linkedin.com/in/gustavo-valentiim/" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:border-blue-500 hover:bg-slate-800/70 text-slate-300 hover:text-white transition-all group">
+                    <span className="text-xl">💼</span>
+                    <span className="font-semibold">LinkedIn</span>
+                    <span className="text-slate-600 group-hover:text-blue-400 ml-auto transition-colors">↗</span>
+                </a>
+                <a href="https://github.com/valxntim" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:border-emerald-500 hover:bg-slate-800/70 text-slate-300 hover:text-white transition-all group">
+                    <span className="text-xl">💻</span>
+                    <span className="font-semibold">GitHub</span>
+                    <span className="text-slate-600 group-hover:text-emerald-400 ml-auto transition-colors">↗</span>
+                </a>
             </div>
 
             {/* Pro tip */}
