@@ -18,7 +18,7 @@ export function ChatProvider({ children }) {
         {
             role: 'ai',
             content: "Hey! 👋 I'm Gustavo's AI. Treat me like a first-round technical interview—ask me anything about his Python skills, data pipelines, or LLM projects! Just a quick heads-up: like any AI, my outputs can sometimes hallucinate details. For the 100% verified truth (or to hire him!), hit the Contact tab to reach out directly."
-        ])
+        }])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const messagesEndRef = useRef(null)
