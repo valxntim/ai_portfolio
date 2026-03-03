@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website with a **live AI assistant** that answers questions about my professional background using RAG (Retrieval-Augmented Generation).
 
-**Live:** [gustavovalentim.com](https://gustavovalentim.com) *(or your Vercel URL)*
+**Live:** [https://gustavo-valentim.vercel.app]
 
 ---
 
