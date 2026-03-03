@@ -29,6 +29,7 @@ const projects = [
             'React + Tailwind floating chat widget',
         ],
         tags: ['FastAPI', 'Supabase', 'OpenAI', 'Groq', 'React', 'Tailwind'],
+        github: 'https://github.com/valxntim/ai_portfolio',
         color: 'from-violet-500 to-purple-500',
     },
 ]

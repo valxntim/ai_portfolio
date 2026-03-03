@@ -60,7 +60,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div className="space-y-4 max-w-sm mx-auto mb-16">
-                <a href="https://linkedin.com/in/gustavovalentim" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.linkedin.com/in/gustavo-valentiim/" target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:border-blue-500 hover:bg-slate-800/70 text-slate-300 hover:text-white transition-all group">
                     <span className="text-xl">💼</span>
                     <span className="font-semibold">LinkedIn</span>

@@ -22,8 +22,8 @@ export default function HeroChat() {
             <div className="absolute -inset-px bg-gradient-to-b from-blue-500/20 via-cyan-500/10 to-transparent rounded-2xl opacity-60 group-hover/chat:opacity-100 transition-opacity duration-500" />
 
             <div className="relative h-full bg-slate-950/80 backdrop-blur-2xl border border-slate-700/50 rounded-2xl flex flex-col overflow-hidden shadow-2xl shadow-blue-950/20">
-                {/* Header */}
-                <div className="px-5 py-4 border-b border-slate-800/80 bg-slate-900/60">
+                {/* Header — always pinned */}
+                <div className="px-5 py-4 border-b border-slate-800/80 bg-slate-900/60 shrink-0">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="relative">
@@ -42,8 +42,8 @@ export default function HeroChat() {
                     </div>
                 </div>
 
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-thin">
+                {/* Messages — scrollable area */}
+                <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-4 scrollbar-thin">
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             {msg.role === 'ai' && (
@@ -83,7 +83,7 @@ export default function HeroChat() {
 
                 {/* Suggestions */}
                 {showSuggestions && (
-                    <div className="px-5 pb-2">
+                    <div className="px-5 pb-2 shrink-0">
                         <p className="text-[10px] text-slate-600 font-mono uppercase tracking-wider mb-2">Try asking</p>
                         <div className="grid grid-cols-2 gap-1.5">
                             {SUGGESTIONS.map((s, i) => (
@@ -99,8 +99,8 @@ export default function HeroChat() {
                     </div>
                 )}
 
-                {/* Input */}
-                <form onSubmit={onSubmit} className="p-4 border-t border-slate-800/80 bg-slate-900/40">
+                {/* Input — always pinned */}
+                <form onSubmit={onSubmit} className="p-4 border-t border-slate-800/80 bg-slate-900/40 shrink-0">
                     <div className="flex gap-2">
                         <div className="flex-1 relative">
                             <input
