@@ -1,87 +1,138 @@
-# Gustavo Valentim — AI Portfolio
+# Gustavo Valentim — AI-Powered Portfolio
 
-A modern, responsive portfolio website with a **live AI assistant** that answers questions about my professional background using RAG (Retrieval-Augmented Generation).
+A modern full-stack portfolio featuring a **live AI assistant** capable of answering questions about my experience, projects, and skills using **Retrieval-Augmented Generation (RAG)**.
 
-**Live:** [https://gustavo-valentim.vercel.app]
+**Live:** [gustavovalentim.com](https://gustavovalentim.com) *(or your Vercel URL)*
 
 ---
 
-## What This Is
+## Overview
 
-This is the frontend for my interactive AI-powered portfolio. Instead of a static resume site, visitors can **chat with an AI** trained on my professional experience, projects, education, and skills — and get grounded, real-time answers.
+This project is an **AI-native portfolio website** designed to demonstrate practical AI engineering and modern full-stack architecture.
 
-The AI assistant is embedded directly into the homepage hero section, and also available as a floating chat widget on all other pages.
+The application combines:
+
+- A **React frontend** with a real-time chat interface
+- A **Python FastAPI backend** orchestrating LLM interactions
+- A **vector database** enabling semantic search over professional data
+
+Users can ask questions such as:
+
+- “What projects has Gustavo worked on?”
+- “What AI technologies does he use?”
+- “What is his background in machine learning?”
+
+The AI retrieves relevant information from a vector store and generates grounded responses.
 
 ---
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| **Framework** | React 19 + Vite 7 |
+|------|-------------|
+| **Frontend** | React 19, Vite 7 |
 | **Styling** | Tailwind CSS 4 |
-| **Routing** | React Router 7 |
-| **Deployment** | Vercel (frontend + serverless API proxies) |
-| **Backend** | FastAPI on DigitalOcean (separate repo) |
-| **AI/ML** | Groq LLaMA 3.3 70B, OpenAI Embeddings, Supabase pgvector |
+| **Backend API** | Python, FastAPI |
+| **LLM Inference** | Groq (LLaMA 3.3 70B) |
+| **Embeddings** | OpenAI Embeddings |
+| **Vector Database** | Supabase pgvector |
+| **Deployment** | Vercel (Frontend) + DigitalOcean (Backend) |
 
 ---
 
 ## Architecture
 
 ```
-Browser (HTTPS)
-    │
-    ├── /api/proxy         → Vercel Serverless Function → FastAPI /api/ask
-    └── /api/contact-proxy → Vercel Serverless Function → FastAPI /api/contact
+User Browser
+      │
+      │ HTTPS
+      ▼
+Vercel Frontend (React)
+      │
+      │ Serverless Proxy
+      ▼
+FastAPI Backend (DigitalOcean VPS)
+      │
+      ├── Groq LLM
+      ├── OpenAI Embeddings
+      └── Supabase Vector Database
 ```
 
-The frontend never calls the backend directly. Vercel serverless functions in the `api/` folder act as HTTPS proxies, solving mixed-content issues and keeping the backend IP private.
+### Why This Architecture?
+
+- **Security** — Backend IP is hidden via Vercel proxy
+- **Scalability** — Frontend served globally via CDN
+- **Low Latency** — Groq inference for fast LLM responses
+- **Structured Outputs** — LLM responses validated with Pydantic
+
+---
+
+## Key AI Engineering Features
+
+### Retrieval-Augmented Generation (RAG)
+
+The AI assistant retrieves relevant context from a **vector database containing professional data** before generating responses.
+
+```
+User Question
+      ↓
+Embedding Generation
+      ↓
+Vector Similarity Search (Supabase pgvector)
+      ↓
+Context Retrieval
+      ↓
+LLM Response Generation
+```
+
+---
+
+### Structured LLM Outputs
+
+Responses are constrained to a **Pydantic schema** to guarantee reliable formatting.
+
+```python
+LLMResponse.model_validate_json(response)
+```
+
+If the model returns invalid output:
+
+1. The system catches the validation error  
+2. The LLM is prompted to correct its response  
+3. The corrected output is validated again  
+
+This creates a **self-correcting LLM pipeline**.
+
+---
+
+### Rate Limiting
+
+API endpoints use **SlowAPI** to limit requests.
+
+```
+3 requests per minute per IP
+```
+
+This prevents abuse and protects compute resources.
 
 ---
 
 ## Project Structure
 
 ```
-portfolio-frontend/
-├── api/                    # Vercel serverless proxy functions
-│   ├── proxy.js            # Chat API proxy → /api/ask
-│   └── contact-proxy.js    # Contact form proxy → /api/contact
-├── public/                 # Static assets (favicon, images)
-├── src/
-│   ├── assets/             # Images (profile, robot avatar)
-│   ├── components/
-│   │   ├── HeroChat.jsx    # Full AI chat embedded in homepage hero
-│   │   ├── ChatWidget.jsx  # Floating chat bubble for other pages
-│   │   ├── Navbar.jsx      # Navigation bar
-│   │   └── ScrollToTop.jsx # Scroll reset on route change
-│   ├── context/
-│   │   └── ChatContext.jsx  # Shared chat state (messages, input, API calls)
-│   ├── pages/
-│   │   ├── Home.jsx        # Landing page with AI chat
-│   │   ├── Experience.jsx  # Work experience timeline
-│   │   ├── Projects.jsx    # Open-source projects
-│   │   ├── Education.jsx   # Academic background
-│   │   └── Contact.jsx     # Contact form + social links
-│   ├── App.jsx             # Router + layout
-│   ├── main.jsx            # Entry point
-│   └── index.css           # Global styles
-├── index.html
-├── vite.config.js
-├── eslint.config.js
-└── package.json
+ai_portfolio/
+│
+├── backend/
+│   └── main.py
+│
+├── portfolio-frontend/
+│   ├── api/
+│   │   ├── proxy.js
+│   │   └── contact-proxy.js
+│   │
+│   ├── src/
+│   └── package.json
 ```
-
----
-
-## Features
-
-- **Live AI Chat** — Ask anything about my experience, projects, or skills. Uses semantic search + reranking over curated professional data.
-- **Shared Chat Context** — Conversation carries over between the hero chat and the floating widget across pages.
-- **Serverless Proxy** — Backend IP is never exposed to the browser. All API calls go through Vercel's edge.
-- **Responsive Design** — Works on desktop, tablet, and mobile.
-- **Security Hardened** — Input sanitization, rate limit handling, CSP headers, no frontend API keys.
-- **Contact Form** — Sends messages via the backend (Resend email integration).
 
 ---
 
@@ -90,80 +141,82 @@ portfolio-frontend/
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- Python 3.10+
 
-### Local Development
+---
+
+## Frontend Setup
 
 ```bash
-# Clone the repo
 git clone https://github.com/valxntim/ai_portfolio.git
+
 cd ai_portfolio/portfolio-frontend
 
-# Install dependencies
 npm install
-
-# Start dev server
-npm run dev
 ```
 
-The app runs at `http://localhost:5173`. Chat features require the backend to be running.
+Create `.env`:
 
-### Environment Variables
-
-For local development, create a `.env` file:
-
-```env
+```
 VITE_API_URL=http://localhost:8000
 ```
 
-For production (Vercel), set this **server-side** environment variable in the Vercel dashboard:
-
-| Variable | Value | Where |
-|----------|-------|-------|
-| `BACKEND_URL` | `http://your-server-ip:8000` | Vercel → Settings → Environment Variables |
-
-> `BACKEND_URL` is used by the serverless proxy functions only — it is never exposed to the browser.
-
-### Build for Production
+Run the development server:
 
 ```bash
-npm run build
-npm run preview  # Preview the production build locally
+npm run dev
 ```
 
 ---
 
-## Deployment (Vercel)
+## Backend Setup
 
-1. Connect the GitHub repo to Vercel.
-2. Set the **Root Directory** to `portfolio-frontend`.
-3. Add the `BACKEND_URL` environment variable in Vercel's dashboard.
-4. Deploy — Vercel automatically detects Vite and the `api/` serverless functions.
+```bash
+cd ai_portfolio/backend
+
+pip install fastapi uvicorn supabase openai groq pydantic slowapi httpx python-dotenv
+```
+
+Create `.env` with:
+
+```
+SUPABASE_URL=
+SUPABASE_KEY=
+OPENAI_API_KEY=
+GROQ_API_KEY=
+RESEND_API_KEY=
+```
+
+Start the API:
+
+```bash
+uvicorn main:app --reload
+```
 
 ---
 
-## Backend
+## Security Considerations
 
-The backend (FastAPI + RAG pipeline) is a separate service that handles:
-
-- Semantic search over professional documents using Supabase pgvector
-- OpenAI embeddings + Groq LLaMA 3.3 70B inference
-- Importance-weighted reranking
-- Rate limiting
-- Contact form email delivery via Resend
+- Frontend **never exposes API keys**
+- Backend protected with **CORS restrictions**
+- **Rate limiting** applied to public endpoints
+- **Proxy architecture** hides backend infrastructure
 
 ---
 
 ## Author
 
-**Gustavo Valentim**
+**Gustavo Valentim**  
 Computer Engineer — University of Brasília (UnB)
 
-- [LinkedIn](https://www.linkedin.com/in/gustavo-valentiim/)
-- [GitHub](https://github.com/valxntim)
+🔗 LinkedIn  
+https://linkedin.com/in/gustavovalentim
+
+💻 GitHub  
+https://github.com/valxntim
 
 ---
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+MIT License
